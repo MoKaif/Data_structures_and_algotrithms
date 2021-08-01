@@ -1,14 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-class Queue{
+class Circular_Queue{
     private:
-        int front,rear, a[5];
+        int front,rear, a[5],itemcount;
     public:
-        Queue()
+        Circular_Queue()
         {
             front=-1;
             rear=-1;
+            itemcount=0;
             for(int i=0;i<5;i++)
             {
                 a[i]=0;
@@ -25,7 +26,7 @@ class Queue{
 
         bool isFull()
         {
-            if(rear==4)
+            if((rear+1)%5==front)
                 return true;
             else    
                 return false;
@@ -46,9 +47,10 @@ class Queue{
             }
             else
             {
-                rear++;
+                rear=(rear+1)%5;
             }
             a[rear]=val;
+            itemcount++;
         }
 
         int dequeue()
@@ -65,20 +67,22 @@ class Queue{
                 a[front]=0;
                 rear=-1;
                 front=-1;
+                itemcount--;
                 return x;
             }
             else
             {
                 x=a[front];
                 a[front]=0;
-                front++;
+                front= (front+1)%5;
+                itemcount--;
                 return x;
             }
         }
 
         int count()
         {
-            return rear-front+1;
+            return itemcount;
         }
 
         void display()
@@ -94,7 +98,7 @@ class Queue{
 
 int main()
 {
-    Queue q1;
+    Circular_Queue q1;
     int option,value;
     do
     {
