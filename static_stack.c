@@ -8,6 +8,7 @@ struct stack
 int item[size];
 int top;
 
+
 int empty()
 {
     if(s.top==-1)
@@ -19,15 +20,15 @@ int empty()
 int full()
 {
     if(s.top==size-1)
-    return 1;
+        return 1;
     else
-    return 0;
+        return 0;
 }
 
 void push(int x)
 {
     if(full())
-    printf("\n Stack Overflow");
+        printf("\n Stack Overflow");
     else
     {
         s.top++;
@@ -38,7 +39,14 @@ void push(int x)
 void pop()
 {
     if(empty()==1)
-        printf("\nStack is Empty");
+    {
+       printf("\nStack is empty");
+        s.top--; 
+    }      
+    else if(s.top == -2)
+    {
+        printf("\n Stack Underflow");
+    }
     else
     {
         printf("\nPopped element: %d",s.item[s.top]);
