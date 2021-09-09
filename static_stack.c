@@ -54,9 +54,9 @@ void display()
         printf("\nStack Is Empty");
     else
     {
-        for(i=0;i<s.top;i++)
+        for(i=0;i<=s.top;i++)
         {
-            printf("%d\n",s.item[i]);
+            printf("%d\t",s.item[i]);
         }
     }
 }
@@ -69,7 +69,7 @@ int main()
     do
     {
 
-        printf("Enter your Choice:\n");
+        printf("\n Enter your Choice from below. Press 4 to Exit:  \n");
         printf("1.Push\n");
         printf("2.Pop\n");
         printf("3.Display\n");
@@ -86,6 +86,9 @@ int main()
                 break;
             case 3:
                 display();
+                break;
+            case 4:
+                printf("\n Stack Ended...");
                 break;
             default:
                 printf("\n Please select the correct Option");
