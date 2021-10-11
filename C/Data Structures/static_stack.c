@@ -41,12 +41,7 @@ void pop()
     if(empty()==1)
     {
        printf("\nStack is empty");
-        s.top--; 
     }      
-    else if(s.top == -2)
-    {
-        printf("\n Stack Underflow");
-    }
     else
     {
         printf("\nPopped element: %d",s.item[s.top]);

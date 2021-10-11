@@ -1,13 +1,10 @@
 #include<stdio.h>
-#include<stdlib.h>      /* for exit() */
-#include<ctype.h>     /* for isdigit(char ) */
+#include<stdlib.h>      
+#include<ctype.h>
 #include<string.h>
 
-#define SIZE 100
+#define SIZE 20
 
-
-/* declared here as global variable because stack[]
-* is used by more than one fucntions */
 char stack[SIZE];
 int top = -1;
 
@@ -28,13 +25,10 @@ void push(char item)
 char pop()
 {
 	char item ;
-
 	if(top <0)
 	{
 		printf("stack under flow: invalid infix expression");
 		getchar();
-		/* underflow may occur for invalid expression */
-		/* where ( and ) are not matched */
 		exit(1);
 	}
 	else
@@ -44,8 +38,6 @@ char pop()
 		return(item);
 	}
 }
-
-
 int is_operator(char symbol)
 {
 	if(symbol == '^' || symbol == '*' || symbol == '/' || symbol == '+' || symbol =='-')
@@ -57,11 +49,9 @@ int is_operator(char symbol)
 	return 0;
 	}
 }
-
-
 int precedence(char symbol)
 {
-	if(symbol == '^')/* exponent operator, highest precedence*/
+	if(symbol == '^')
 	{
 		return(3);
 	}
@@ -69,7 +59,7 @@ int precedence(char symbol)
 	{
 		return(2);
 	}
-	else if(symbol == '+' || symbol == '-')          /* lowest precedence */
+	else if(symbol == '+' || symbol == '-')         
 	{
 		return(1);
 	}
@@ -85,12 +75,12 @@ void InfixToPostfix(char infix_exp[], char postfix_exp[])
 	char item;
 	char x;
 
-	push('(');                               /* push '(' onto stack */
-	strcat(infix_exp,")");                  /* add ')' to infix expression */
+	push('(');                               
+	strcat(infix_exp,")");                  
 
 	i=0;
 	j=0;
-	item=infix_exp[i];         /* initialize before loop*/
+	item=infix_exp[i];        
 
 	while(item != '\0')        /* run loop till end of infix expression */
 	{
@@ -103,7 +93,7 @@ void InfixToPostfix(char infix_exp[], char postfix_exp[])
 			postfix_exp[j] = item;              /* add operand symbol to postfix expr */
 			j++;
 		}
-		else if(is_operator(item) == 1)        /* means symbol is operator */
+		else if(is_operator(item) == 1)        
 		{
 			x=pop();
 			while(is_operator(x) == 1 && precedence(x)>= precedence(item))
@@ -161,9 +151,8 @@ int main()
 	char infix[SIZE], postfix[SIZE];        
 	printf("\nEnter Infix expression : ");
 	gets(infix);
-	InfixToPostfix(infix,postfix);                   /* call to convert */
+	InfixToPostfix(infix,postfix);                  
 	printf("Postfix Expression: ");
-	puts(postfix);                     /* print postfix expression */
-
+	puts(postfix);                    
 	return 0;
 }
